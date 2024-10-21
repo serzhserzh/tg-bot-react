@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { fetchItem, Items } from "../redux/itemSlice";
 import ColorButtons from "../components/ui/colorButtons";
 import { CarouselDemo } from "../components/ui/Slider";
-import { addItem } from "../redux/cart/CartSlice";
-
 const Item = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
@@ -26,13 +24,7 @@ const Item = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
- 
-  //Добавление товара в корзину
-  const addToCart = () => {
-    if (item !== null) {
-      dispatch(addItem(item));
-    }
-  };
+
   return (
     item !== null && (
       <div className="p-2 flex flex-col justify-center items-center w-full">
@@ -72,12 +64,7 @@ const Item = () => {
 
           <h2 className="my-2 font-medium">Цвета в наличии :</h2>
           <ColorButtons colors={item.colors} size={32} />
-          <button
-            onClick={() => {
-              addToCart();
-            }}
-            className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity"
-          >
+          <button className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity">
             Добавить в корзину
           </button>
         </div>
