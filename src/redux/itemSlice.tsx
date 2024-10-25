@@ -13,7 +13,7 @@ export interface Items {
 
 export const fetchItem = createAsyncThunk("fetchPizzas", async () => {
   const { data } = await axios.get("https://be8239fbb54389dd.mokky.dev/items");
-  return data as Items;
+  return data as Items[];
 });
 
 const initialState: { items: Items[] } = {
