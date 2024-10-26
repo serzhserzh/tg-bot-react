@@ -15,7 +15,7 @@ export const CarouselDemo: React.FC<{ img: string[]; styles: string }> = ({
               <img
                 src={`${item}`}
                 alt=""
-                className={`object-cover ${styles}`}
+                className={`object-cover ${styles} h-96`}
               />
             </div>
           </CarouselItem>
