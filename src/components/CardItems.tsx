@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CarouselDemo } from "./ui/Slider";
 import ColorButtons from "./ui/colorButtons";
 import { Items } from "../redux/itemSlice";
 
