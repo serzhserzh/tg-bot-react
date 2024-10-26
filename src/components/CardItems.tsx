@@ -15,7 +15,7 @@ const CardItems: React.FC<Items> = ({
   return (
     <div className=" w-full rounded bg-white drop-shadow-2xl border-black border-2">
       <Link to={`/item/${id}`}>
-        <CarouselDemo img={img[0]} styles="w-full h-52" />
+        <img src={`${img[0][0]}`} className=" h-52" />
       </Link>
       <div className="p-2">
         <Link to={`/item/${id}`} className=" inline-block text-lg font-bold ">
