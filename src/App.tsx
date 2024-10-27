@@ -22,6 +22,7 @@ function App() {
   useEffect(() => {
     tg.expand();
     tg.ready();
+    alert(tg.initDataUnsafe.user.username);
   });
   return (
     <Provider store={store}>
