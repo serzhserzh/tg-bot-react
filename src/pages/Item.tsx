@@ -29,7 +29,7 @@ const Item = () => {
     console.log("отправляю");
     const userName = tg.initDataUnsafe.user.username;
     fetch(
-      `https://api.telegram.org/bot7893066097:AAGZ5PRnEMLu7-7MumZoPNils4zK80tOvAs/sendMessage`,
+      `https://api.telegram.org/bot7893066097:AAEEbvbF_p5o46-O8sv23H263pn-t2O0S3w/sendMessage`,
       {
         method: "POST",
         headers: {
