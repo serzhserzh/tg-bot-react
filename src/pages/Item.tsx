@@ -26,7 +26,8 @@ const Item = () => {
   }, []);
   const tg = window.Telegram?.WebApp;
   const byItemsFetch = async () => {
-    const userName = tg.initDataUnsafe.user.username;
+    console.log("отправляю");
+
     fetch(
       `https://api.telegram.org/bot7893066097:AAGZ5PRnEMLu7-7MumZoPNils4zK80tOvAs/sendMessage`,
       {
@@ -36,7 +37,7 @@ const Item = () => {
         },
         body: JSON.stringify({
           chat_id: "@sneakersBo",
-          text: `@${userName}      Item:${item?.name}`,
+          text: `@${tg.initDataUnsafe.user.username}      Item:${item?.name}`,
         }),
       }
     );
