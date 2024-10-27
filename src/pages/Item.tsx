@@ -25,7 +25,7 @@ const Item = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const tg = window.Telegram?.WebApp;
-  const byItemsFetch = async () => {
+  const byItemsFetch = () => {
     console.log("отправляю");
 
     fetch(
