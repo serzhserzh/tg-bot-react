@@ -36,7 +36,7 @@ const Item = () => {
         },
         body: JSON.stringify({
           chat_id: "@sneakersBo",
-          text: `${userName}Item:`,
+          text: `@${userName}      Item:${item}`,
         }),
       }
     );
