@@ -24,6 +24,23 @@ const Item = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const tg = window.Telegram?.WebApp;
+  const byItemsFetch = async () => {
+    const userName = tg.initDataUnsafe.user.username;
+    fetch(
+      `https://api.telegram.org/bot7893066097:AAGZ5PRnEMLu7-7MumZoPNils4zK80tOvAs/sendMessage`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: "@sneakersBo",
+          text: `${userName}Item:`,
+        }),
+      }
+    );
+  };
 
   return (
     item !== null && (
@@ -64,8 +81,11 @@ const Item = () => {
 
           <h2 className="my-2 font-medium">Цвета в наличии :</h2>
           <ColorButtons colors={item.colors} size={32} />
-          <button className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity">
-            Добавить в корзину
+          <button
+            onClick={() => byItemsFetch()}
+            className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity"
+          >
+            Оформить заказ
           </button>
         </div>
       </div>
