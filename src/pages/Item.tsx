@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchItem, Items } from "../redux/itemSlice";
 import ColorButtons from "../components/ui/colorButtons";
 import { CarouselDemo } from "../components/ui/Slider";
+import { addToCart } from "../redux/cartSlice";
 const Item = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
@@ -24,31 +25,45 @@ const Item = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const tg = window.Telegram?.WebApp;
-  const byItemsFetch = () => {
-    console.log("отправляю");
-    const userName = tg.initDataUnsafe.user.username;
-    fetch(
-      `https://api.telegram.org/bot7893066097:AAEEbvbF_p5o46-O8sv23H263pn-t2O0S3w/sendMessage`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: "@sneakersBo",
-          text: `@${userName}      Item:${item?.name}`,
-        }),
-      }
-    );
-  };
+  // const tg = window.Telegram?.WebApp;
+  // const byItemsFetch = () => {
+  //   console.log("отправляю");
+  //   const userName = tg.initDataUnsafe.user.username;
+  //   fetch(
+  //     `https://api.telegram.org/bot7893066097:AAEEbvbF_p5o46-O8sv23H263pn-t2O0S3w/sendMessage`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         chat_id: "@sneakersBo",
+  //         text: `@${userName}      Item:${item?.name}`,
+  //       }),
+  //     }
+  //   );
+  // };
 
+  //Добавление товара в корзину
+  const addItemCart = () => {
+    if (item) {
+      const obj = {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        img: item.img[0][0],
+        size: item.sizes[0],
+        color: item.colors[0][0],
+      };
+      dispatch(addToCart(obj));
+    }
+  };
   return (
     item !== null && (
       <div className="p-2 flex flex-col justify-center items-center w-full">
         <div className="relative rounded drop-shadow-2xl border-black border-2 bg_white_opacity">
           <CarouselDemo img={item.img[0]} styles="w-full" />
-          <Link to="/Home" className="absolute  w-10 h-10 left-4 top-4  ">
+          <Link to="/" className="absolute  w-10 h-10 left-4 top-4  ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -83,10 +98,10 @@ const Item = () => {
           <h2 className="my-2 font-medium">Цвета в наличии :</h2>
           <ColorButtons colors={item.colors} size={32} />
           <button
-            onClick={() => byItemsFetch()}
+            onClick={() => addItemCart()}
             className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity"
           >
-            Оформить заказ
+            Добавить в корзину
           </button>
         </div>
       </div>
