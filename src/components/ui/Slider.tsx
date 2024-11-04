@@ -7,7 +7,7 @@ export const CarouselDemo: React.FC<{ img: string[]; styles: string }> = ({
   styles,
 }) => {
   return (
-    <Carousel className="w-full error-effect">
+    <Carousel className="w-full ">
       <CarouselContent>
         {img.map((item, index) => (
           <CarouselItem key={index}>

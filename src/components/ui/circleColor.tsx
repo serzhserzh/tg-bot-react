@@ -10,7 +10,6 @@ const CircleColor: React.FC<{ color: string[]; size: number }> = ({
   };
   const myData: Mydata[] = [];
 
-  console.log(color);
   if (color.length === 1) {
     myData.push({ y: 1 });
   }
@@ -22,7 +21,6 @@ const CircleColor: React.FC<{ color: string[]; size: number }> = ({
     myData.push({ y: 1 });
     myData.push({ y: 1 });
     myData.push({ y: 1 });
-    console.log(myData);
   }
 
   return (

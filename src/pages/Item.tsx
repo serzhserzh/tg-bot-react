@@ -5,13 +5,16 @@ import { fetchItem, Items } from "../redux/itemSlice";
 import ColorButtons from "../components/ui/colorButtons";
 import { CarouselDemo } from "../components/ui/Slider";
 import { addToCart } from "../redux/cartSlice";
+
 const Item = () => {
-  const dispatch = useAppDispatch();
-  const params = useParams();
   const { items } = useAppSelector((state) => state.itemSlice);
+  const dispatch = useAppDispatch();
 
   const [item, setItem] = useState<Items | null>(null);
+  const [colorActive, setColorActtive] = useState(0);
+  const [sizeActive, setSizeActtive] = useState(0);
 
+  const params = useParams();
   useEffect(() => {
     items.forEach((value) =>
       value.id === Number(params.id) ? setItem(value) : ""
@@ -25,6 +28,7 @@ const Item = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   // const tg = window.Telegram?.WebApp;
   // const byItemsFetch = () => {
   //   console.log("отправляю");
@@ -44,6 +48,13 @@ const Item = () => {
   //   );
   // };
 
+  const changeColor = (value: number) => {
+    setColorActtive(value);
+  };
+  const changeSize = (value: number) => {
+    setSizeActtive(value);
+  };
+
   //Добавление товара в корзину
   const addItemCart = () => {
     if (item) {
@@ -52,8 +63,8 @@ const Item = () => {
         name: item.name,
         price: item.price,
         img: item.img[0][0],
-        size: item.sizes[0],
-        color: item.colors[0][0],
+        size: item.sizes[sizeActive],
+        color: item.colors[colorActive],
       };
       dispatch(addToCart(obj));
     }
@@ -66,8 +77,8 @@ const Item = () => {
           <Link to="/" className="absolute  w-10 h-10 left-4 top-4  ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
+              width="32"
+              height="32"
               fill="black"
               className="bi bi-arrow-left"
               viewBox="0 0 16 16"
@@ -87,8 +98,15 @@ const Item = () => {
           <div className="font-medium overflow-hidden">
             <h2>Размеры в наличии:</h2>
             <div className="flex my-2 overflow-x-auto pb-2">
-              {item.sizes.map((value) => (
-                <div className="border-solid rounded-full border min-w-7 min-h-7 mr-2 border-black  flex justify-center ">
+              {item.sizes.map((value, index) => (
+                <div
+                  className={`border-solid rounded-full border min-w-7 min-h-7 mr-2 border-black  flex justify-center ${
+                    sizeActive === index ? "bg-black text-white" : ""
+                  }`}
+                  onClick={() => {
+                    changeSize(index);
+                  }}
+                >
                   {value}
                 </div>
               ))}
@@ -96,7 +114,12 @@ const Item = () => {
           </div>
 
           <h2 className="my-2 font-medium">Цвета в наличии :</h2>
-          <ColorButtons colors={item.colors} size={32} />
+          <ColorButtons
+            colors={item.colors}
+            size={28}
+            changeColor={changeColor}
+            colorActive={colorActive}
+          />
           <button
             onClick={() => addItemCart()}
             className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity"
