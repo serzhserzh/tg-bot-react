@@ -26,7 +26,12 @@ const CardItems: React.FC<Items> = ({
         </Link>
         <div className="flex items-center justify-between  mb-2">
           <div className="font-medium"> {sizesCard}</div>
-          <ColorButtons colors={colors} size={16} />
+          <ColorButtons
+            colors={colors}
+            size={16}
+            changeColor={() => {}}
+            colorActive={-1}
+          />
         </div>
         <Link to={`/item/${id}`} className="text-lg font-medium">
           {price} ₽
