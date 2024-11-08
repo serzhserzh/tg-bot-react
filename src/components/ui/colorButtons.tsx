@@ -7,11 +7,11 @@ const colorButtons: React.FC<{
   colorActive: number | null;
 }> = ({ colors, size, changeColor, colorActive }) => {
   return (
-    <div className="flex my-2">
+    <div className="flex">
       {colors.map((color, index) => (
         <div
           className={
-            colorActive === index
+            colorActive !== null && colorActive === index
               ? "border-2  border-red-400 rounded-full  p-1 bg-white"
               : "p-1"
           }

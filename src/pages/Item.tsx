@@ -5,6 +5,7 @@ import { fetchItem, Items } from "../redux/itemSlice";
 import ColorButtons from "../components/ui/colorButtons";
 import { CarouselDemo } from "../components/ui/Slider";
 import { addToCart } from "../redux/cartSlice";
+import Accordion from "../components/ui/accordion";
 
 const Item = () => {
   const { items } = useAppSelector((state) => state.itemSlice);
@@ -93,43 +94,49 @@ const Item = () => {
         </div>
 
         <div className="w-full m-2 p-4 rounded drop-shadow-2xl border-black border-2 bg_white_opacity">
-          <div className="text_stroke  drop-shadow-2xl font-extrabold text-white font-mono text-3xl w-full text-center">
+          <div className="text_stroke  drop-shadow-2xl font-extrabold text-black font-mono text-2xl w-full text-center mb-6">
             {item.name}
           </div>
-          <div className="font-medium overflow-hidden">
-            <h2>Размеры в наличии:</h2>
-            <div className="flex my-2 overflow-x-auto pb-2 items-center">
-              {item.sizes.map((value, index) => (
-                <div
-                  className={`mr-1 ${
-                    sizeActive === index
-                      ? "border-2 bg-white border-red-400 rounded-full p-1"
-                      : "p-1"
-                  }`}
-                >
-                  <div
-                    className={`border-solid border-2  rounded-full  w-8 h-8  border-black  flex items-center justify-center `}
-                    onClick={() => {
-                      changeSize(index);
-                    }}
-                  >
-                    {value}
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="mb-2 text-2xl drop-shadow-2xl font-extrabold text-black font-mono">
+            {item.price}₽
           </div>
+          <div className="mb-2">
+            <div className="font-medium overflow-hidden">
+              <h2 className="mb-1">Размеры в наличии:</h2>
+              <div className="flex pb-0.5  overflow-x-auto  items-center">
+                {item.sizes.map((value, index) => (
+                  <div
+                    className={`mr-1 ${
+                      sizeActive === index
+                        ? "border-2 bg-white border-red-400 rounded-full p-1"
+                        : "p-1"
+                    }`}
+                  >
+                    <div
+                      className={`border-solid border-2  rounded-full  w-8 h-8 font-bold  border-black  flex items-center justify-center `}
+                      onClick={() => {
+                        changeSize(index);
+                      }}
+                    >
+                      {value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-          <h2 className="my-2 font-medium">Цвета в наличии :</h2>
-          <ColorButtons
-            colors={item.colors}
-            size={28}
-            changeColor={changeColor}
-            colorActive={colorActive}
-          />
+            <h2 className=" font-medium mb-1">Цвета в наличии :</h2>
+            <ColorButtons
+              colors={item.colors}
+              size={28}
+              changeColor={changeColor}
+              colorActive={colorActive}
+            />
+          </div>
+          <Accordion />
           <button
             onClick={() => addItemCart()}
-            className="w-full text-white font-extrabold text-xl my-4 p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity"
+            className="w-full text-black font-extrabold text-xl  p-4 rounded drop-shadow-2xl border-black border-2 bg_black_opacity"
           >
             Добавить в корзину
           </button>
