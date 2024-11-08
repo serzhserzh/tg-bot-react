@@ -13,7 +13,7 @@ const colorButtons: React.FC<{
           className={
             colorActive !== null && colorActive === index
               ? "border-2  border-red-400 rounded-full  p-1 bg-white"
-              : "p-1"
+              : "p-1 border-2 border-rose-900/0"
           }
           key={index}
           onClick={() => {
