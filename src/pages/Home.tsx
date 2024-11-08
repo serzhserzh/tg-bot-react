@@ -13,14 +13,13 @@ const Home = () => {
   }, []);
   return (
     <>
-      <div className="grid gap-x-2 gap-y-3 grid-cols-2 justify-items-center m-1">
+      <div className=" grid gap-x-2 gap-y-3 grid-cols-2 justify-items-center m-1">
         {items && items.map((item) => <CardItems key={item.id} {...item} />)}
         <Link
           to="/Cart"
           className=" bg-black/70 p-2 rounded-full fixed bottom-5 right-5 "
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             fill="white"

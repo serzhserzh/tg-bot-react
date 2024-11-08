@@ -18,7 +18,7 @@
   background: #fffff3
     url(https://gleb.solutions/cdn/shop/t/6/assets/img-warm-chess.jpg?v2) 0 0
     repeat;
-  /* -webkit-animation: noise 200ms infinite linear; */
+  -webkit-animation: noise 200ms infinite linear;
   animation: noise 200ms infinite linear;
 }
 /* 
@@ -31,7 +31,7 @@
   -webkit-animation: noiseeffect 4000ms infinite linear;
   animation: noiseeffect 4000ms infinite linear;
 } */
-/* 
+
 @-webkit-keyframes noise {
   0% {
     background-position: 0px 1000px;
@@ -42,7 +42,7 @@
   100% {
     background-position: 100px 0px;
   }
-} */
+}
 @keyframes noise {
   0% {
     /* background-position: 0px 1000px; */

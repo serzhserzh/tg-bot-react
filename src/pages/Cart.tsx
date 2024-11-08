@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../hooks/hooks";
 import { downQuantity, upQuantity } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems } = useAppSelector((state) => state.cartSlice);
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const ClickUpQuantity = (value: number) => {
     dispatch(upQuantity(cartItems[value].id));
   };
@@ -16,18 +16,17 @@ const Cart = () => {
   return (
     <div className="p-2 flex flex-col items-center w-full h-screen text-lg font-bold ">
       <div className="flex items-center justify-between w-full">
-        <Link to="-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="currentColor"
-            className="bi bi-arrow-left-square-fill"
-            viewBox="0 0 16 16"
-          >
-            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
-          </svg>
-        </Link>
+        <svg
+          onClick={() => navigate(-1)}
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="currentColor"
+          className="bi bi-arrow-left-square-fill"
+          viewBox="0 0 16 16"
+        >
+          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+        </svg>
         <h2 className="text_stroke m-2 drop-shadow-2xl font-extrabold text-black font-mono text-3xl">
           Корзина
         </h2>
@@ -35,9 +34,13 @@ const Cart = () => {
       {cartItems.map((item, index) => (
         <div
           key={item.id}
-          className="flex my-1 w-full h-40 rounded bg-white drop-shadow-2xl border-black border-2"
+          className="flex my-1 w-full  rounded bg-white drop-shadow-2xl border-black border-2"
         >
-          <img src={item.img} alt="" className="w-32 h-full object-cover" />
+          <img
+            src={item.img}
+            alt=""
+            className="w-32 h-40 object-cover rounded"
+          />
           <div className="w-7/12 p-2 flex-col flex justify-between">
             <div className="h-full flex flex-col justify-between">
               <div>

@@ -3,14 +3,7 @@ import { Link } from "react-router-dom";
 import ColorButtons from "./ui/colorButtons";
 import { Items } from "../redux/itemSlice";
 
-const CardItems: React.FC<Items> = ({
-  id,
-  name,
-  price,
-  img,
-  colors,
-  sizesCard,
-}) => {
+const CardItems: React.FC<Items> = ({ id, name, price, img, colors }) => {
   return (
     <div className=" w-full rounded bg-white drop-shadow-2xl border-black border-2">
       <Link to={`/item/${id}`}>
@@ -25,12 +18,12 @@ const CardItems: React.FC<Items> = ({
           {name}
         </Link>
         <div className="flex items-center justify-between  mb-2">
-          <div className="font-medium"> {sizesCard}</div>
+          Цвет
           <ColorButtons
             colors={colors}
             size={16}
-            changeColor={() => {}}
-            colorActive={-1}
+            changeColor={null}
+            colorActive={null}
           />
         </div>
         <Link to={`/item/${id}`} className="text-lg font-medium">
