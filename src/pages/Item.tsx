@@ -97,7 +97,7 @@ const Item = () => {
           <div className="text_stroke  drop-shadow-2xl font-extrabold text-black font-mono text-2xl w-full text-center mb-6">
             {item.name}
           </div>
-          <div className="mb-2 text-2xl drop-shadow-2xl font-extrabold text-black font-mono flex">
+          <div className="mb-2 text-2xl drop-shadow-2xl font-extrabold text-black font-mono flex items-center">
             {item.price}
             <svg
               className="ml-0.5"
